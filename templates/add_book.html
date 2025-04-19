@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Book{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<style>
+    .add-book-form {
+        max-width: 700px;
+        margin: 60px auto;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-book-form h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #001f54;
+        font-weight: 700;
+    }
+
+    .form-control {
+        margin-bottom: 20px;
+        border-radius: 6px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        background-color: #001f54;
+        color: white;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 6px;
+        border: none;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: #003580;
+    }
+</style>
+
+<div class="add-book-form">
+    <h2>Add New Book</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="title" class="form-control" placeholder="Book Title" required>
+
+        <input type="text" name="author" class="form-control" placeholder="Author Name" required>
+
+        <textarea name="description" class="form-control" placeholder="Description" rows="4" required></textarea>
+
+        <input type="number" name="price" class="form-control" placeholder="Price" required>
+
+        <input type="file" name="cover" class="form-control">
+
+        <button type="submit" class="btn-submit">Add Book</button>
+    </form>
+</div>
+{% endblock %}

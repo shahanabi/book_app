@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<style>
+    .register-section {
+        max-width: 500px;
+        margin: 60px auto;
+        background-color: #ffffff;
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .register-section h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 700;
+        color: #001f54;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .form-control {
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+
+    .btn-register {
+        width: 100%;
+        background-color: #001f54;
+        color: #fff;
+        font-weight: 600;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .btn-register:hover {
+        background-color: #003580;
+    }
+</style>
+
+<section class="register-section">
+    <form method="post">
+        {% csrf_token %}
+        <h2>Register</h2>
+
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Name</label>
+            <input type="text" name="name" id="id_name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email</label>
+            <input type="email" name="email" id="id_email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_phone" class="form-label">Phone Number</label>
+            <input type="text" name="phone" id="id_phone" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_password" class="form-label">Password</label>
+            <input type="password" name="password" id="id_password" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-register">Register</button>
+    </form>
+</section>
+{% endblock %}

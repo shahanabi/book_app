@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Book{% endblock %}
+
+{% block content %}
+<style>
+    .edit-book-form {
+        max-width: 700px;
+        margin: 60px auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .edit-book-form h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #001f54;
+        font-weight: 700;
+    }
+
+    .form-control {
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .btn-submit {
+        background-color: #001f54;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        width: 100%;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background-color: #003580;
+    }
+
+    .current-cover {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .current-cover img {
+        width: 120px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+</style>
+
+<div class="edit-book-form">
+    <h2>Edit Book - {{ book.title }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <input type="text" name="title" class="form-control" placeholder="Book Title" value="{{ book.title }}" required>
+
+        <input type="text" name="author" class="form-control" placeholder="Author Name" value="{{ book.author }}" required>
+
+        <textarea name="description" class="form-control" placeholder="Description" rows="4" required>{{ book.description }}</textarea>
+
+        <input type="number" name="price" class="form-control" placeholder="Price" value="{{ book.price }}" required>
+
+        <div class="current-cover">
+                <p>Current Cover:</p>
+                <img src="{{ book.cover.url }}" alt="Current Cover">
+        </div>
+
+        <input type="file" name="cover" class="form-control">
+
+        <button type="submit" class="btn-submit">Update Book</button>
+    </form>
+</div>
+{% endblock %}

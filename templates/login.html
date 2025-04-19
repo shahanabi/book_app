@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}login{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <style>
+        section {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+       
+        .login-form {
+            background: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #fff;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .signup-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+       
+    </style>
+    <section>
+    <form method="post" action="{% url 'login' %}" class="login-form">
+        {% csrf_token %}
+        <div>
+        <h2>Login</h2>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Enter your email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter your password">
+        </div>
+        <button type="submit" class="btn-primary">Login</button>
+
+        <!-- Sign-Up Link -->
+        <div class="signup-link">
+            <p>Don't have an account? <a href="{% url 'homepage' %}">Sign up </a></p>
+        </div>
+        </div>
+    </form>
+    </section>
+
+    {% endblock %}
